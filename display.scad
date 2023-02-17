@@ -18,7 +18,11 @@ module ghost_display() {
     }
     
     module fakeDisplay() {
-        cube([display_screen_width, display_screen_height,6.00]);
+        union() {
+            cube([display_screen_width, display_screen_height,6.00]);
+            color("black") 
+                translate([display_real_screen_offset_x, display_real_screen_offset_y,1]) cube([display_real_screen_width, display_real_screen_height,6.00]);
+        }
     }
     
     module fakePot() {  // Reference X is middle
@@ -34,7 +38,7 @@ module ghost_display() {
     bite_height=4;
     switch_round_diameter=3;
     module fakeSwitch() { // Reference X middle
-        translate([-switch_side/2, 0 ,0]) union() { 
+        translate([-switch_side/2, -switch_side/2 ,0]) union() { 
             color([0.4,0.4,0.4]) cube([switch_side,switch_side, switch_height]);
             color([0,0,0]) translate([switch_side/2, switch_side/2, switch_height]) cylinder(bite_height,d=switch_round_diameter);
     }

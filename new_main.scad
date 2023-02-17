@@ -11,11 +11,8 @@ use <front_panel.scad>
 use <back_panel.scad>
 
 // TODO:
-// screen more right
-// hide screen more
-// cut screen support left
-// shorter screen spacers
-// empty midi boards (cut square like display)
+// washers on midi board because screws too long
+// even shorter screws for pico 
 
 $fn=50;
 
@@ -26,7 +23,7 @@ back_boards_position=0;
 for (i=[0:3]) 
     translate([back_boards_position,30*i-3+10,board_attacher_height+mainboard_thickness]) rotate([180,0,0]) support_midiboard_ada(ghost);
 translate([back_boards_position,107.5,mainboard_thickness]) rotate([0,0,0]) support_pico(ghost);
-translate([mainboard_width-13,0,mainboard_thickness]) rotate([0,0,90]) support_display(ghost);
+translate([mainboard_width-13,display_support_shift_x,mainboard_thickness]) rotate([0,0,90]) support_display(ghost);
 
 color("darkorange",0.5) mainboard();
 color("darkorange",0.5) translate([0,0, board_attacher_height+2*mainboard_thickness]) mirror([0,0,1]) mainboard();
@@ -40,11 +37,11 @@ color("darkorange", 0.5) translate([-front_panel_thickness,-side_panel_thickness
 // To print it:
 
 // support_midiboard_ada * 4
-// support_pico
+// support_pico (careful in two parts annoying to separate)
 // support_display
 // mainboard * 2
 // side_panel * 2
-// front_panel
+// front_panel (print at 0.1mm so you don't need supports)
 // back_panel
 // midiboard_spacer * 16
 // display_spacer * 4

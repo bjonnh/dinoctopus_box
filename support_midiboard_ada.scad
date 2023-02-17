@@ -19,6 +19,7 @@ module support_midiboard_ada(ghost=false) {
         for (i=[0:3]) 
           translate([midi_board_holes[i][1],margin+midi_support_thickness,midi_board_holes[i][0]+midi_support_board_height]) 
             rotate([90,0,0]) cylinder(20,d=3);
+        translate([-margin/2,-margin/2,9]) cube([17,10,35]);
     }
     
     translate([0,midi_support_thickness/2,0]) rotate([0,0,90]) rail(true, rail_width, rail_height, midi_board_height); 
